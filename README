@@ -1,0 +1,1 @@
+In this React project we use some spetial libraries like immutable.js ( to handle state update on the reducers functions ), reselect ( to handle memoization on Redux selector functions ).
