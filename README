@@ -1,1 +1,14 @@
-In this React project we use some spetial libraries like immutable.js ( to handle state update on the reducers functions ), reselect ( to handle memoization on Redux selector functions ).
+I included libraries on this project:
+
+
+1.Eslint (and plugins)
+2.Babel  (and plugins)
+3.Webpack (plugins and loaders)
+4.Nodemon
+5.Jest (for testing)
+6.uuid
+7.React.js
+8.Redux
+9.React-Router
+10.Immutable ( to handle state update on the reducers functions )
+11.React icons
