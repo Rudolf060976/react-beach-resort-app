@@ -47,7 +47,8 @@ module.exports = {
 		"prefer-arrow-callback":["warn"],
 		"no-underscore-dangle":["off"],
 		"prefer-template": ["off"],
-		"no-plusplus": ["off"]
+		"no-plusplus": ["off"],
+		"max-len": ["off"]
 
     }
 };
