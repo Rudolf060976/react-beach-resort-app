@@ -1,4 +1,4 @@
-
+import uuidv4 from 'uuid/v4';
 // Actions Types
 const USER_LOGIN = 'USER_LOGIN';
 const USER_LOGOUT = 'USER_LOGOUT';
@@ -6,12 +6,17 @@ const USER_LOGOUT = 'USER_LOGOUT';
 
 // Action creators
 
-const userLogin = function (user) {
+const userLogin = function (username, password, fullname) {
 	
 	return {
 		type: USER_LOGIN,
 		payload: {
-			user
+			user: {
+				_id: uuidv4(),
+				username,
+				password,
+				fullname
+			}
 		}
 	};
 };

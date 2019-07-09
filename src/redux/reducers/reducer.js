@@ -8,7 +8,7 @@ import initialState from '../initial-state';
 
 const reducer = function (state = initialState, action) {
 
-	switch (action) {
+	switch (action.type) {
 
 	case USER_LOGIN:
 	{
@@ -23,7 +23,7 @@ const reducer = function (state = initialState, action) {
 	{
 		const st = fromJS(state);
 
-		return st.setIn(['authenticated'], false).toJS();
+		return st.setIn(['authenticated'], false).setIn(['userOnline'], {}).toJS();
 
 	}
 	default:

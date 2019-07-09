@@ -19,7 +19,7 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist')
 	},
 	devServer: {
-		contentBase: path.join(__dirname,'dist'),
+		contentBase: path.join(__dirname, 'dist'),
 		port: 3000,
 		hot: true,
 		open: true,
@@ -59,7 +59,7 @@ module.exports = {
 				]
 			},
 			{
-				test: /\.(png|svg|jpg|gif)$/,
+				test: /\.(png|svg|jpe?g|gif)$/,
 				use: [
 					'file-loader'
 				]		 

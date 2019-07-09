@@ -10,28 +10,46 @@ export const getOnlineUser = function (state) {
 	return state.userOnline;
 };
 
+const convertRoomsList = function (roomlistobj) {
+
+	// Receives a room list object and converts it to an Array
+
+	const obj = roomlistobj;
+
+	const idsArray = obj.allIDs;
+	const rooms = obj.byId;
+	const resArray = [];
+
+	for (let i = 0; i < idsArray.length; i++) {
+
+		resArray.push(rooms[idsArray[i]]);
+
+	}
+
+	return resArray;
+	
+};
+
 export const getRoomsList = function (state) {
 
-	return state.entities.rooms;
+	// Returns Rooms List as an Array of Objects
+
+	return convertRoomsList(state.entities.rooms);
 
 };
 
+
+export const getRoomsIdsList = function (state) {
+
+	return state.entities.rooms.allIDs;
+
+};
+
+
 export const getRoombyId = function (state, id) {
+	
+	return state.entities.rooms.byId[id];
 
-	const list = state.entities.rooms.allIDs;
-
-	let idroom = 0;
-
-	for (let i = 0; i < list.length; i++) {
-
-		if (list[i] === id) {
-
-			idroom = list[i];
-
-		} 
-	}
-
-	return state.entities.rooms.byId[idroom];
 };
 
 export const getRoomImages = function (state, imgArray) {
