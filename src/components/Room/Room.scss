@@ -1,0 +1,105 @@
+$primaryColor: #af9a7d;
+$mainWhite: #fff;
+$offWhite: #f7f7f7;
+$mainBlack: #222;
+$mainGrey: #ececec;
+$darkGrey: #cfcfcf;
+$mainTransition: all 0.3s linear;
+$mainSpacing: 3px;
+$lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+$darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+
+// Pixels to Rems Mixin
+
+@mixin fontSize($sizeValue: 1.6) {  // 1rem = 10px , 1.6rem = 16px
+    
+    font-size: ($sizeValue * 10) + px;
+    font-size: $sizeValue + rem;
+    
+}
+
+//Desktop-first Media Query Mixin
+@mixin forSmallScreens($media) {
+    
+    @media (max-width: $media/16+em) { @content; }
+}
+
+.room {
+	box-shadow: $lightShadow;
+	transition: $mainTransition;
+	max-width: 400px;
+	margin: 3rem;
+
+	&:hover {
+		box-shadow: $darkShadow;
+	}
+
+}
+
+.img-container {
+	position: relative;
+
+	&:hover {
+		background: rgba(0, 0, 0, 0.8);
+
+		.room-link {
+			transform: translate(-50%, -50%) scale(1);
+		}
+
+		.price-top {
+			opacity: 0;
+		}
+	}
+
+	img {
+		width: 100%;
+  		display: block;
+		transition: $mainTransition;
+		  
+
+	}
+
+	&:hover img {
+		opacity: 0.3;
+	}
+
+  }
+
+  .price-top {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.8);
+	color: $mainWhite;
+	padding: 0.3rem 0.6rem 0.5rem;
+	border-bottom-right-radius: 1rem;
+	font-size: 0.9rem;
+	text-align: center;
+	transition: $mainTransition;
+
+	h6 {
+		margin-bottom: 0;
+		font-size: 1.2rem;
+		font-weight: 300;
+		letter-spacing: $mainSpacing;
+	}
+
+  }
+
+  .room-link {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: scale(0);
+	transition: all 0.3s linear;
+  }
+
+  .room-info {
+	background: $darkGrey;
+	text-transform: capitalize;
+	padding: 0.5rem 0;
+	text-align: center;
+	font-size: 1.3rem;
+	font-weight: bolder;
+	letter-spacing: $mainSpacing;
+  }

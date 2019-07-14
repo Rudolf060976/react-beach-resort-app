@@ -30,11 +30,47 @@ const convertRoomsList = function (roomlistobj) {
 	
 };
 
+const getImageURL = function (state, imgId) {
+
+	const imgObj = state.entities.images.byId;
+
+	return imgObj[imgId].url;
+};
+
 export const getRoomsList = function (state) {
 
 	// Returns Rooms List as an Array of Objects
 
-	return convertRoomsList(state.entities.rooms);
+	const roomList = convertRoomsList(state.entities.rooms);
+
+
+	const roomList2 = roomList.map((room) => {
+
+		const imgArrayUrl = room.images.map(id => {
+
+			return getImageURL(state, id);
+
+		});
+
+		return { ...room, images: imgArrayUrl };
+
+	});
+
+	return roomList2;
+
+};
+
+export const getFeaturedRoomsList = function (state) {
+
+	// Return Rooms List with "features : true"
+
+	const filteredRooms = getRoomsList(state).filter((room) => {
+
+		return room.featured === true;
+
+	});
+
+	return filteredRooms;
 
 };
 
@@ -49,18 +85,5 @@ export const getRoomsIdsList = function (state) {
 export const getRoombyId = function (state, id) {
 	
 	return state.entities.rooms.byId[id];
-
-};
-
-export const getRoomImages = function (state, imgArray) {
-
-	const images = [];
-
-	for (let i = 0; i < imgArray.length; i++) {
-
-		images.push(state.entities.images.byId[imgArray[i]]);
-	}
-
-	return images;
 
 };

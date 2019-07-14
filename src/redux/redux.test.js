@@ -1,6 +1,6 @@
 import store from './store';
 import { userLogin, userLogout } from './actions/actions';
-import { getIsAuthenticated, getOnlineUser, getRoomsList, getRoombyId, getRoomImages } from './selectors';
+import { getIsAuthenticated, getOnlineUser, getRoomsList, getRoombyId, getRoomImages, getFeaturedRoomsList } from './selectors';
 
 
 describe('Testing User Authentication', () => {
@@ -85,6 +85,18 @@ describe('Testing rooms data', () => {
 		expect(ImagesArray[0].id).toBe(8);
 		expect(ImagesArray[1].id).toBe(2);
 
+
+	});
+
+	test('Should return 3 featured Room objects', () => {
+
+		const st = store.getState();
+
+		const resArray = getFeaturedRoomsList(st);
+
+		expect(resArray.length).toBe(3);
+		expect(resArray[0].id).toBe(8);
+		expect(resArray[2].id).toBe(13);
 
 	});
 

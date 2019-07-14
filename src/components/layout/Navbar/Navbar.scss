@@ -1,0 +1,109 @@
+$primaryColor: #af9a7d;
+$mainWhite: #fff;
+$offWhite: #f7f7f7;
+$mainBlack: #222;
+$mainGrey: #ececec;
+$darkGrey: #cfcfcf;
+$mainTransition: all 0.3s linear;
+$mainSpacing: 3px;
+$lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+$darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+
+//Desktop-first Media Query Mixin
+@mixin forSmallScreens($media) {
+    
+    @media (max-width: $media/16+em) { @content; }
+}
+
+
+.navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 0.75rem 2rem;
+	background-color: $offWhite;
+	z-index: 1;
+}
+
+.nav-header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.nav-center {
+	max-width: 1170px;
+	margin: 0 auto;
+	display: flex;
+}
+
+.nav-btn {
+	background-color: transparent;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	display: none;
+}
+
+.nav-icon {
+	color: $primaryColor;
+	font-size: 2rem;
+
+}
+
+.nav-links {
+	display: flex;
+	height: auto;
+	transition: $mainTransition;
+	list-style-type: none;
+	margin-left: 4rem;
+	
+
+	a {
+		display: block;
+		padding: 1rem 2rem;
+		text-decoration: none;
+		color: $mainBlack;
+		font-size: 1.2rem;
+		font-weight: 600;
+		letter-spacing: $mainSpacing;
+		transition: $mainTransition;
+		text-align: center;
+	}
+
+	a:hover {
+
+		color: $primaryColor;
+	}
+
+}
+
+
+@include forSmallScreens(768) {
+
+	.nav-btn {
+		display: block;
+	}
+
+	.nav-center {
+		display: block;
+		width: 100%;
+		
+	}
+	.nav-links {
+		display: block;
+		height: 0;
+		overflow: hidden;
+		margin: 0;
+		padding-top: 1rem;
+
+		a {
+			padding: 1.2rem 0;
+
+		}
+	}
+	.show-nav {
+		height: 100px;
+	}
+
+}

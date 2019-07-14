@@ -1,0 +1,128 @@
+$primaryColor: #af9a7d;
+$mainWhite: #fff;
+$offWhite: #f7f7f7;
+$mainBlack: #222;
+$mainGrey: #ececec;
+$darkGrey: #cfcfcf;
+$mainTransition: all 0.3s linear;
+$mainSpacing: 3px;
+$lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+$darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  }
+
+// Font-face Mixin
+
+@mixin fontFace($font-family,$file-path) {
+    
+    @font-face {
+        
+        font: {
+            family: $font-family;
+            weight: normal;
+            style: normal;
+        }    
+        //Modern Browsers
+        src: url('#{$file-path}.ttf') format('truetype'),
+            url('#{$file-path}.woff') format('woff');
+    }
+        
+}
+
+// @include fontFace(PatuaOne-Regular,'../fonts/Patua_One/PatuaOne-Regular');
+
+// Pixels to Rems Mixin
+
+@mixin fontSize($sizeValue: 1.6) {  // 1rem = 10px , 1.6rem = 16px
+    
+    font-size: ($sizeValue * 10) + px;
+    font-size: $sizeValue + rem;
+    
+}
+
+//Desktop-first Media Query Mixin
+@mixin forSmallScreens($media) {
+    
+    @media (max-width: $media/16+em) { @content; }
+}
+
+//Base-10 model, assuming that base font for all browsers is 16px so we set
+//the base font-size for the root (html tag) in 10px.
+
+html { 
+    
+    font-size: 62.5%; //10px
+    
+   /** forLargeScreens(640) {
+        font-size: 75%;  //12px for large screens
+    }  **/
+}
+
+body {
+	padding-top: 66px;
+	color: $mainBlack;
+	background: $mainWhite;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	line-height: 1.4;
+  }
+
+h1 { 
+	@include fontSize(4.684);  // Values in rems = px /10
+	line-height: 1;
+	margin-bottom: 0.5rem;
+} 
+
+h2 { 
+	@include fontSize(4.188);
+	margin-bottom: 0.75rem;
+}
+
+h3 { 
+
+	@include fontSize(2.895);
+	line-height: 1;
+	margin-bottom: 1em;
+}
+
+h4 {
+	
+	@include fontSize(2.588);
+	line-height: 1.25;
+	margin-bottom: 1.25em;
+}
+
+h5 { 
+	
+	@include fontSize(1.789);
+	font-weight: bold;
+	margin-bottom: 1.5em;
+	
+}
+
+h6 {
+	@include fontSize(0.588);
+	font-weight: bold;
+	margin-bottom: 1.5em;
+}
+
+.btn-primary {
+	background-color: $primaryColor;
+	border: 3px solid $primaryColor;
+	color: $mainBlack;
+	letter-spacing: $mainSpacing;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition: $mainTransition;
+	padding: .5rem;
+
+	&:hover {
+		background: transparent;
+		color: $primaryColor;
+	}
+}
+
+

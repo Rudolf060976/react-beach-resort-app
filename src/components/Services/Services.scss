@@ -1,0 +1,129 @@
+$primaryColor: #af9a7d;
+$mainWhite: #fff;
+$offWhite: #f7f7f7;
+$mainBlack: #222;
+$mainGrey: #ececec;
+$darkGrey: #cfcfcf;
+$mainTransition: all 0.3s linear;
+$mainSpacing: 3px;
+$lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+$darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+
+// Pixels to Rems Mixin
+
+@mixin fontSize($sizeValue: 1.6) {  // 1rem = 10px , 1.6rem = 16px
+    
+    font-size: ($sizeValue * 10) + px;
+    font-size: $sizeValue + rem;
+    
+}
+
+//Desktop-first Media Query Mixin
+@mixin forSmallScreens($media) {
+    
+    @media (max-width: $media/16+em) { @content; }
+}
+
+
+
+.services {
+	background-color: $darkGrey;
+	padding: 5rem 1rem;
+	text-align: center;
+
+	
+}
+
+.services-center {
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-around;
+	flex-flow: row nowrap;
+
+	@include forSmallScreens(992) {
+
+		flex-flow: row wrap;
+	}
+
+	@include forSmallScreens(600) {
+
+		flex-flow: column nowrap;
+		align-items: center;
+	}
+
+
+}
+
+.service {
+	width: 20%;
+	padding: 0 5rem;
+	text-align: center;
+
+	@include forSmallScreens(1600) {
+
+		padding: 0 2rem;
+	}
+
+	@include forSmallScreens(1300) {
+
+		padding: 0 1.5rem;
+	}
+
+	@include forSmallScreens(992) {
+		width: 50%;
+		margin-bottom: 3.5rem;
+		padding: 0 0.5rem;
+	}
+
+	@include forSmallScreens(600) {
+		width: 80%;
+		padding: 0 3rem;
+	}
+
+	@include forSmallScreens(400) {
+		width: 90%;
+		padding: 0 3rem;
+	}
+
+	div {
+		@include fontSize(3);
+		color: $primaryColor;
+		margin-bottom: 1.5rem;
+
+		@include forSmallScreens(992) {
+			
+			margin-bottom: 1rem;
+		}
+
+	}
+
+	h5 {
+		letter-spacing: $mainSpacing;
+
+		@include forSmallScreens(992) {
+			
+			margin-bottom: 1.5rem;
+		}
+
+	}
+
+	p {
+		width: 100%;
+		margin: 0 auto;
+
+		@include fontSize(1.2);
+
+		@include forSmallScreens(992) {
+
+			width: 60%;
+		}
+
+		@include forSmallScreens(600) {
+
+			width: 80%;
+		}
+		
+	}
+
+}

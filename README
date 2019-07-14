@@ -12,3 +12,5 @@ I included libraries on this project:
 9.React-Router
 10.Immutable ( to handle state update on the reducers functions )
 11.React icons
+12. Node-sass
+

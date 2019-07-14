@@ -48,7 +48,8 @@ module.exports = {
 		"no-underscore-dangle":["off"],
 		"prefer-template": ["off"],
 		"no-plusplus": ["off"],
-		"max-len": ["off"]
+		"max-len": ["off"],
+		"react/prop-types": ["warn"]
 
     }
 };

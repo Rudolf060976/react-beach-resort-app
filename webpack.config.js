@@ -5,7 +5,7 @@ const webpack = require('webpack');
 
 
 module.exports = {
-	entry: './src/client/index.js',
+	entry: './src/index.js',
 	plugins: [
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({

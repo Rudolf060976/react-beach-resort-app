@@ -1,0 +1,82 @@
+$primaryColor: #af9a7d;
+$mainWhite: #fff;
+$offWhite: #f7f7f7;
+$mainBlack: #222;
+$mainGrey: #ececec;
+$darkGrey: #cfcfcf;
+$mainTransition: all 0.3s linear;
+$mainSpacing: 3px;
+$lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+$darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+
+//Desktop-first Media Query Mixin
+@mixin forSmallScreens($media) {
+    
+    @media (max-width: $media/16+em) { @content; }
+}
+
+// Pixels to Rems Mixin
+
+@mixin fontSize($sizeValue: 1.6) {  // 1rem = 10px , 1.6rem = 16px
+    
+    font-size: ($sizeValue * 10) + px;
+    font-size: $sizeValue + rem;
+    
+}
+
+
+.banner {
+	background: rgba(0, 0, 0,0.5);
+	padding: 2rem 6rem;
+	color: $mainWhite;
+	text-align: center;
+  	text-transform: capitalize;
+	letter-spacing: $mainSpacing;
+
+	@include forSmallScreens(992) {
+		
+		padding: 2rem 3rem;
+				
+	}
+
+	@include forSmallScreens(576) {
+		
+		padding: 2rem 1rem;
+				
+	}
+
+	h1 {
+
+		@include fontSize(4);  // 4rem = 4 x 16 = 48px
+
+		@include forSmallScreens(992) {
+		
+			@include fontSize(3);  // 4rem = 4 x 16 = 48px
+					
+		}
+
+		@include forSmallScreens(576) {
+		
+			@include fontSize(2.5);  // 4rem = 4 x 16 = 48px
+			
+		}
+
+	}
+	
+	div {
+
+		width: 10rem;
+  		height: 5px;
+  		background: $primaryColor;
+  		margin: 1.7rem auto;
+
+	}
+
+	p {
+		@include fontSize(1.2);
+		margin-bottom: 2rem;
+
+	}
+	
+}
+
