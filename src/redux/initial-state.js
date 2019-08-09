@@ -16,7 +16,7 @@ import img11 from '../assets/images/room-11.jpeg';
 import img12 from '../assets/images/room-12.jpeg';
 
 const entities = {
-
+	
 	rooms: {
 
 		allIDs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
@@ -412,17 +412,36 @@ const entities = {
 
 /* const userOnline = {
 
-	_id: 0,
 	username: '',
-	password: '',
 	fullname: ''	
-};  */
+};  */ 
 
+const filterRooms = {
+	isFiltering: false,
+	error: false,
+	errorMessage: '',
+	filterApplied: {
+		roomType: 'all',
+		guests: 1,
+		maxPrice: 1000,
+		minSize: 0,
+		maxSize: 3000,
+		pets: false,
+		breakfast: false		
+	},
+	filteredRooms: {
+		allIDs: [],
+		byId: {}
+	}
+};
 
 const initialState = {
-	authenticated: false,
-	userOnline: {},
-	entities
+	users: {
+		authenticated: false,
+		userOnLine: {}
+	},	
+	entities,
+	filterRooms
 };
 
 

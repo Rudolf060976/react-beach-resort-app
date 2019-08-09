@@ -64,18 +64,15 @@ $darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
 	}
 	
 	div {
-
 		width: 10rem;
   		height: 5px;
   		background: $primaryColor;
   		margin: 1.7rem auto;
-
 	}
 
 	p {
 		@include fontSize(1.2);
 		margin-bottom: 2rem;
-
 	}
 	
 }

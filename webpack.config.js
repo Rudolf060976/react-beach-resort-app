@@ -16,20 +16,16 @@ module.exports = {
 	],
 	output: {
 		filename: 'main.js',
-		path: path.resolve(__dirname, 'dist')
+		path: path.resolve(__dirname, 'dist'),
+		publicPath: '/'
 	},
 	devServer: {
 		contentBase: path.join(__dirname, 'dist'),
+		publicPath: '/',
 		port: 3000,
 		hot: true,
 		open: true,
-		historyApiFallback: true,
-		proxy: {
-			'/api': {
-				target: 'http://localhost:8080',
-				pathRewrite: { '^/api': '' }
-			} 	  
-		}
+		historyApiFallback: true
 	},
 	module: {
 		rules: [

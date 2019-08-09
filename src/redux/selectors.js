@@ -1,89 +1,161 @@
 
-export const getIsAuthenticated = function (state) {
+import { createSelector } from 'reselect';
 
-	return state.authenticated;
+// **** USERS ******
+
+export const getIsAuthenticated = state => {
+
+	return state.users.authenticated;
 
 };
 
-export const getOnlineUser = function (state) {
+export const getOnlineUser = state => {
 
-	return state.userOnline;
+	return state.users.userOnline;
 };
 
-const convertRoomsList = function (roomlistobj) {
+// ***** END USERS ********
 
-	// Receives a room list object and converts it to an Array
 
-	const obj = roomlistobj;
+// ***** ENTITIES ********
 
-	const idsArray = obj.allIDs;
-	const rooms = obj.byId;
-	const resArray = [];
+const getEntitiesRooms = state => state.entities.rooms; 
 
-	for (let i = 0; i < idsArray.length; i++) {
+const getRoomsArray = createSelector(
+	getEntitiesRooms,
+	entitiesRooms => {
+		// Receives a room list object and converts it to an Array
+		const obj = entitiesRooms;
+		const idsArray = obj.allIDs;
+		const rooms = obj.byId;
+		const resArray = [];
 
-		resArray.push(rooms[idsArray[i]]);
+		for (let i = 0; i < idsArray.length; i++) {
 
+			resArray.push(rooms[idsArray[i]]);
+
+		}
+
+		return resArray;
 	}
+);
 
-	return resArray;
-	
-};
+const getEntitiesImagesById = state => state.entities.images.byId;
 
-const getImageURL = function (state, imgId) {
 
-	const imgObj = state.entities.images.byId;
+const getImageURLbyId = (imagesObject, id) => imagesObject[id].url;
 
-	return imgObj[imgId].url;
-};
 
-export const getRoomsList = function (state) {
+export const getRoomsList = createSelector(
 
 	// Returns Rooms List as an Array of Objects
 
-	const roomList = convertRoomsList(state.entities.rooms);
+	getRoomsArray, getEntitiesImagesById,
 
+	(roomsArray, images) => {
 
-	const roomList2 = roomList.map((room) => {
+		const roomList = roomsArray.map(room => {
 
-		const imgArrayUrl = room.images.map(id => {
-
-			return getImageURL(state, id);
-
+			const imgArrayUrl = room.images.map(id => {
+	
+				return getImageURLbyId(images, id);
+	
+			});
+	
+			return { ...room, images: imgArrayUrl };	
 		});
 
-		return { ...room, images: imgArrayUrl };
+		return roomList;
 
 	});
 
-	return roomList2;
 
-};
+export const getFeaturedRoomsList = createSelector(
 
-export const getFeaturedRoomsList = function (state) {
+	getRoomsList,
+	roomsList => {
+		const filteredRooms = roomsList.filter(room => room.featured === true);	
+		return filteredRooms;
+	}
+);
 
-	// Return Rooms List with "features : true"
+const getRoomSlug = (state, slug) => slug;
 
-	const filteredRooms = getRoomsList(state).filter((room) => {
+export const getRoomBySlug = createSelector(
 
-		return room.featured === true;
+	getRoomsList, getRoomSlug,
+	(rooms, slug) => {
 
-	});
+		const room = rooms.find((item) => {
 
-	return filteredRooms;
-
-};
-
-
-export const getRoomsIdsList = function (state) {
-
-	return state.entities.rooms.allIDs;
-
-};
-
-
-export const getRoombyId = function (state, id) {
+			return (item.slug === slug);
+		});
 	
-	return state.entities.rooms.byId[id];
+		return room;
+	}
+
+);
+
+
+// ****** END OF ENTITIES *******
+
+
+// ****** FILTER ROOMS ********
+
+export const getIsFiltering = state => state.filterRooms.isFiltering;
+
+export const getAppliedRoomsFilter = state => state.filterRooms.filterApplied;
+
+const getFilteredRooms = state => state.filterRooms.filteredRooms;
+
+export const getFilteredRoomsArray = createSelector(
+	getFilteredRooms,
+	filteredRooms => {
+
+		const { allIDs, byId } = filteredRooms;
+		
+		const roomsArray = [];
+
+		for (let i = 0; i < allIDs.length; i++) {
+
+			roomsArray.push(byId[allIDs[i]]);
+		}
+
+		return roomsArray;
+	}
+);
+
+
+export const fetchFilterRooms = (state, filterApplied) => {
+
+	return new Promise(resolve => {
+
+		const rooms = getRoomsList(state);
+		const { 
+			roomType,
+			guests,
+			maxPrice,	
+			minSize,
+			maxSize,
+			pets,
+			breakfast		
+		} = filterApplied;
+
+		const filteredRooms = rooms.filter(room => (
+			((roomType === 'all') ? true : (room.type === roomType))
+			&& room.capacity >= guests
+			&& room.price <= maxPrice
+			&& room.size >= minSize
+			&& room.size <= maxSize
+			&& room.pets === pets
+			&& room.breakfast === breakfast 
+		)			
+		);
+
+		resolve(filteredRooms);
+
+	});
 
 };
+
+// ***** END FILTER ROOMS

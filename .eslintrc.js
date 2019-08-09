@@ -49,7 +49,10 @@ module.exports = {
 		"prefer-template": ["off"],
 		"no-plusplus": ["off"],
 		"max-len": ["off"],
-		"react/prop-types": ["warn"]
+		"react/prop-types": ["off"],
+		"arrow-body-style": ["off"],
+		"jsx-a11y/label-has-associated-control": ["off"],
+		"jsx-a11y/label-has-for": ["off"]	
 
     }
 };

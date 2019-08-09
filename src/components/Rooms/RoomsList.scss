@@ -1,0 +1,60 @@
+$primaryColor: #af9a7d;
+$mainWhite: #fff;
+$offWhite: #f7f7f7;
+$mainBlack: #222;
+$mainGrey: #ececec;
+$darkGrey: #cfcfcf;
+$mainTransition: all 0.3s linear;
+$mainSpacing: 3px;
+$lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
+$darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+
+// Pixels to Rems Mixin
+
+@mixin fontSize($sizeValue: 1.6) {  // 1rem = 10px , 1.6rem = 16px
+    
+    font-size: ($sizeValue * 10) + px;
+    font-size: $sizeValue + rem;
+    
+}
+
+//Desktop-first Media Query Mixin
+@mixin forSmallScreens($media) {
+    
+    @media (max-width: $media/16+em) { @content; }
+}
+
+/* roomlist */
+.roomslist {
+	padding: 5rem 0;
+  }
+  .roomslist-center {
+	width: 80vw;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+	grid-row-gap: 2rem;
+	grid-column-gap: 30px;
+  }
+  
+  @media screen and (min-width: 776px) {
+	.roomslist-center {
+	  width: 90vw;
+	}
+  }
+  @media screen and (min-width: 992px) {
+	.roomslist-center {
+	  width: 95vw;
+	  max-width: 1170px;
+	}
+  }
+  /* end of roomlist */
+
+  .empty-search {
+	text-align: center;
+	text-transform: capitalize;
+	margin: 2rem 0;
+	padding: 1rem;
+	letter-spacing: $mainSpacing;
+	
+  }

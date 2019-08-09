@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getFeaturedRoomsList, getRoomsList } from '../../redux/selectors';
+import { getFeaturedRoomsList } from '../../redux/selectors';
 import Title from '../Title/Title';
 import Room from '../Room/Room';
 import Loading from '../Loading/Loading';
@@ -19,9 +19,9 @@ class FeaturedRooms extends Component {
 
 	render() {
 
-		const rooms = this.props.getFeaturedRoomList.map(room => {
-					
-			return (<Room key={room.id} room={room} />);
+		const rooms = this.props.getFeaturedRoomsList.map(room => {
+
+			return <Room key={room.id} room={room} />;
 
 		});
 
@@ -37,11 +37,10 @@ class FeaturedRooms extends Component {
 	}
 }
 
-const mapStatetoProps = (state) => {
+const mapStatetoProps = state => {
 
 	return {
-		getRoomsList: getRoomsList(state),
-		getFeaturedRoomList: getFeaturedRoomsList(state)		
+		getFeaturedRoomsList: getFeaturedRoomsList(state)		
 	};
 
 };
