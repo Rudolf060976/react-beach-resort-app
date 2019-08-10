@@ -1,15 +1,22 @@
-This is a Beach Resort App build with Node.js and the following Libraries:
+This is a Beach Resort App build with Node.js and using the following Libraries:
 
-1.Eslint (and plugins)
-2.Babel  (and plugins)
-3.Webpack (plugins and loaders)
-4.Nodemon
-5.Jest (for testing)
-6.uuid
-7.React.js
-8.Redux
-9.React-Router
-10.Immutable ( to handle state update on the reducers functions )
-11.React icons
-12. Node-sass
+
+1.React.js
+2.Redux
+3.Redux-Actions
+4.Redux-Thunk
+5.React-Router
+6.Immutable
+7.React icons
+8. Node-sass
+9. Express.js
+10.Eslint (and plugins)
+11.Babel  (and plugins)
+12.Webpack (plugins and loaders)
+13.Nodemon
+14.Jest (for testing)
+15.uuid
+
+
+
 
