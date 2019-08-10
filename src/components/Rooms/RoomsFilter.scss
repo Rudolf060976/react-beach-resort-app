@@ -31,7 +31,7 @@ $darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
 .rooms-filter-center {
-	width: 80%;
+	width: 90%;
 	margin: 0 auto;
 
 	.form-controls {
@@ -45,7 +45,16 @@ $darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
 			letter-spacing: $mainSpacing;
 			list-style-type: none;
 			text-align: center;
+			min-width: 200px;
+
+			@include forSmallScreens(1200) {
+				margin-bottom: 20px;
+			}
 			
+		}
+
+		@include forSmallScreens(1200) {
+			flex-flow: row wrap;
 		}
 
 	}
